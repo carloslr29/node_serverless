@@ -1,0 +1,41 @@
+service: aws-serverless-node
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-west-2:465869779054:table/Personas
+
+functions:
+  getPersona:
+    handler: source/persona.getPersona
+    events:
+      - httpApi:
+          path: /persona/{idKey}
+          method: get
+  insertPersona:
+    handler: source/persona.insertPersona
+    events:
+      - httpApi:
+          path: /persona
+          method: post
+
+resources:
+  Resources:
+    TaskTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Personas
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: idKey
+            AttributeType: S
+        KeySchema:
+          - AttributeName: idKey
+            KeyType: HASH

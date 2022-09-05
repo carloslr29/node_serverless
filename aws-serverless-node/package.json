@@ -1,0 +1,32 @@
+{
+  "name": "node_serverless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "sls": "serverless",
+    "start": "node handler.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carloslr29/node_serverless.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carloslr29/node_serverless/issues"
+  },
+  "homepage": "https://github.com/carloslr29/node_serverless#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1209.0",
+    "dotenv": "^16.0.2",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.7",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "serverless": "^3.22.0"
+  }
+}
