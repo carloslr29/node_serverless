@@ -3,6 +3,9 @@ const fetch = require("node-fetch");
 const { v4 } = require("uuid");
 
 const getPersona = async (event) => {
+  /*get format
+  https://XXXXXXXXXXXXX.com/persona/1b1bdab0-ba97-4d6f-81f6-f5e17aa7570b
+  */
     const dynamodb = new AWS.DynamoDB.DocumentClient();
   
     const { idKey } = event.pathParameters;
@@ -23,6 +26,12 @@ const getPersona = async (event) => {
   };
 
 const insertPersona = async (event) => {
+    /*post - formato json
+    {
+	    "id": 1,
+	    "url": "https://swapi.py4e.com/api/people/1"
+    }
+    */
     try
     {
         const dynamodb = new AWS.DynamoDB.DocumentClient();
