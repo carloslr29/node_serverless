@@ -10,20 +10,32 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-        - arn:aws:dynamodb:us-west-2:465869779054:table/Personas
+        - arn:aws:dynamodb:us-west-2:465869779054:table/Empleados
 
 functions:
   getPersona:
-    handler: source/persona.getPersona
+    handler: source/index.getPersona
     events:
       - httpApi:
-          path: /persona/{idKey}
+          path: /persona/{id}
           method: get
-  insertPersona:
-    handler: source/persona.insertPersona
+  getPersonas:
+    handler: source/index.getPersonas
     events:
       - httpApi:
           path: /persona
+          method: get
+  getEmpleado:
+    handler: source/index.getEmpleado
+    events:
+      - httpApi:
+          path: /empleado/{id}
+          method: get
+  insertEmpleado:
+    handler: source/index.insertEmpleado
+    events:
+      - httpApi:
+          path: /empleado
           method: post
 
 resources:
@@ -31,11 +43,11 @@ resources:
     TaskTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: Personas
+        TableName: Empleados
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
-          - AttributeName: idKey
+          - AttributeName: id
             AttributeType: S
         KeySchema:
-          - AttributeName: idKey
+          - AttributeName: id
             KeyType: HASH
